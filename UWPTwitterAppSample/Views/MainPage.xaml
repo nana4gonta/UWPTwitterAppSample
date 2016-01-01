@@ -1,0 +1,36 @@
+﻿<prism:SessionStateAwarePage
+    x:Class="UWPTwitterAppSample.Views.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:prism="using:Prism.Windows.Mvvm"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:UWPTwitterAppSample"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ViewModels="using:UWPTwitterAppSample.ViewModels"
+    xmlns:Fragments="using:UWPTwitterAppSample.Views.Fragments"
+    prism:ViewModelLocator.AutoWireViewModel="True"
+    mc:Ignorable="d"
+    d:DataContext="{d:DesignInstance ViewModels:MainPageViewModel, IsDesignTimeCreatable=True}">
+    
+    <prism:SessionStateAwarePage.Resources>
+        <DataTemplate x:Key="StatusMessageTemplate">
+            <Fragments:StatusMessageFragment />
+        </DataTemplate>
+    </prism:SessionStateAwarePage.Resources>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock TextWrapping="Wrap" Text="Sample Twitter Client" Style="{StaticResource BodyTextBlockStyle}" Grid.ColumnSpan="2"/>
+        <Button Content="Tweet" Grid.Column="1" Grid.Row="2" Command="{Binding TweetComand, Mode=OneWay}"/>
+        <TextBox Grid.Row="2" TextWrapping="Wrap" Text="{Binding Tweet.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTipService.ToolTip="{Binding TweetInputError.Value}"/>
+        <ListView Grid.ColumnSpan="2" Grid.Row="1" ItemsSource="{Binding StatusMessages}" ItemTemplate="{StaticResource StatusMessageTemplate}" SelectionMode="Single" SelectedItem="{Binding SelectedStatusMessage.Value, Mode=TwoWay}"/>
+    </Grid>
+</prism:SessionStateAwarePage>

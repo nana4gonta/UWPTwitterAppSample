@@ -1,0 +1,9 @@
+﻿<prism:PrismApplication
+    x:Class="UWPTwitterAppSample.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:prism="using:Prism.Windows"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:UWPTwitterAppSample"
+    RequestedTheme="Light">
+
+</prism:PrismApplication>
