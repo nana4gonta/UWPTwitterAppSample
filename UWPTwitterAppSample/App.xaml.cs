@@ -1,5 +1,6 @@
 ﻿using Prism.Mvvm;
 using Prism.Windows;
+using UWPTwitterAppSample.Models;
 using UWPTwitterAppSample.ViewModels;
 using UWPTwitterAppSample.Views;
 using System.Threading.Tasks;
@@ -45,6 +46,7 @@ namespace UWPTwitterAppSample
 
         protected override Task OnInitializeAsync(IActivatedEventArgs args)
         {
+            TwitterClient.Instance.Initialize();
             ViewModelLocationProvider.Register(typeof(MainPage).ToString(), () => new MainPageViewModel(NavigationService));
 
             return base.OnInitializeAsync(args);
